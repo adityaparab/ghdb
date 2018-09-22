@@ -5,10 +5,6 @@ import { DoesGitRepoExists } from './repo-exists';
 import { ValidateGit } from './validate';
 
 class GithubDatabse {
-  constructor() {
-    console.log('Initializing Github Db');
-  }
-
   public setup(): Observable<string> {
     return ValidateGit().pipe(
       map((message: string) => message),
