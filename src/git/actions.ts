@@ -4,7 +4,7 @@ import { PerformClone } from './clone';
 import { DoesGitRepoExists } from './repo-exists';
 import { ValidateGit } from './validate';
 
-class GithubDatabse {
+class GithubDatabase {
   public setup(): Observable<string> {
     return ValidateGit().pipe(
       map((message: string) => message),
@@ -15,4 +15,4 @@ class GithubDatabse {
   }
 }
 
-export const githubDb = new GithubDatabse();
+export const githubDb = new GithubDatabase();

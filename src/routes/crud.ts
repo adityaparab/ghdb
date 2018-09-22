@@ -1,7 +1,7 @@
 import { Next, Request, Response } from 'restify';
 import RestifyRouter = require('restify-router');
 
-import { DataService } from '../util/data.service';
+import { DataService } from '../services/data.service';
 
 export const CrudRouter = new RestifyRouter.Router();
 export const CrudRouterPrefix = '/crud';
@@ -40,7 +40,8 @@ CrudRouter.get(
           [collection]: dataSet[collection].filter(
             (c: any) => c[propName] === id
           ),
-          total: dataSet[collection].filter((c: any) => c[propName] === id).length
+          total: dataSet[collection].filter((c: any) => c[propName] === id)
+            .length
         });
       } else {
         res.status(200);

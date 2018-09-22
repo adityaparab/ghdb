@@ -1,9 +1,17 @@
-import { createServer, plugins, Server } from 'restify';
+import {
+  createServer,
+  Next,
+  plugins,
+  Request,
+  Response,
+  Server
+} from 'restify';
 import * as CorsMiddleware from 'restify-cors-middleware';
 
 import { githubDb } from './git/actions';
+import { AdminRouter, AdminRouterPrefix } from './routes/admin';
 import { CrudRouter, CrudRouterPrefix } from './routes/crud';
-import { DataService } from './util/data.service';
+import { DataService } from './services/data.service';
 import './util/logging';
 
 export class GithubAsJsonServer {
@@ -15,17 +23,17 @@ export class GithubAsJsonServer {
   };
 
   constructor() {
+    console.log('Getting It');
     const cors = CorsMiddleware.default(this.CorsMiddlewareOptions);
     this.server.pre(cors.preflight);
     this.server.use(cors.actual);
 
     this.server.use(plugins.bodyParser());
     this.server.use(plugins.queryParser());
-
-    CrudRouter.applyRoutes(this.server, CrudRouterPrefix);
   }
 
   public start() {
+    this.configureRoutes();
     console.log('Setting up GitHub Repo');
     const gitSetupSubscription = githubDb.setup().subscribe(
       () => console.green('Success'),
@@ -47,6 +55,17 @@ export class GithubAsJsonServer {
         );
       }
     );
+  }
+
+  private configureRoutes() {
+    CrudRouter.applyRoutes(this.server, CrudRouterPrefix);
+    AdminRouter.applyRoutes(this.server, AdminRouterPrefix);
+
+    this.server.get('/', this.navigateToAdmin);
+  }
+
+  private navigateToAdmin(req: Request, res: Response, next: Next) {
+    res.redirect('/client/', next);
   }
 }
 
