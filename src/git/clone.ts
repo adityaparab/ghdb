@@ -1,12 +1,19 @@
-import { ChildProcess, spawn } from 'child_process';
-import { basename, join, resolve } from 'path';
-import { Observable, Subject } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import {
+  ChildProcess,
+  spawn
+} from 'child_process';
+import { resolve } from 'path';
+import {
+  Observable,
+  Subject
+} from 'rxjs';
+import {
+  map,
+  switchMap
+} from 'rxjs/operators';
 
 import { config } from '../config';
 import { ValidateGit } from './validate';
-
-const repoFolder = resolve('/Users/aparab/Aditya/playground/ddbs');
 
 export function GitClone(repoUrl: string): Observable<string> {
   return ValidateGit().pipe(
@@ -20,10 +27,8 @@ export function PerformClone(): Observable<string> {
   const repoUrl = config.github.repo;
   const cloneOptions = ['clone', '--progress', repoUrl];
 
-  const cwd = join(repoFolder, basename(repoUrl, ',git'));
-
   const cloneCommandProcess: ChildProcess = spawn('git', cloneOptions, {
-    cwd: repoFolder
+    cwd: resolve(config.github.repoPath)
   });
 
   process.stderr.pipe(cloneCommandProcess.stdin);
