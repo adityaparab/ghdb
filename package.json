@@ -16,7 +16,7 @@
     "client:build": "cd client && ng build --prod",
     "client:watch": "cd client && ng serve --open",
     "dev": "npm run clean && npm run server:compile && concurrently -k \"npm run server:watch\" \"npm run nodemon\" \"npm run client:watch\" ",
-    "deploy":"npm run clean && npm run server:compile && cd client && npm run build"
+    "deploy": "npm run clean && npm run server:compile && cd client && npm run build"
   },
   "repository": {
     "type": "git",
