@@ -11,18 +11,10 @@ class GithubDatabse {
 
   public setup(): Observable<string> {
     return ValidateGit().pipe(
-      map((message: string) => {
-        return message;
-      }),
-      switchMap((message: string) => {
-        return DoesGitRepoExists();
-      }),
-      filter((doesIt: boolean) => {
-        return !doesIt;
-      }),
-      switchMap(() => {
-        return PerformClone();
-      })
+      map((message: string) => message),
+      switchMap((message: string) => DoesGitRepoExists()),
+      filter((doesIt: boolean) => !doesIt),
+      switchMap(() => PerformClone())
     );
   }
 }
