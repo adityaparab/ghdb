@@ -1,16 +1,7 @@
-import {
-  ChildProcess,
-  spawn
-} from 'child_process';
+import { ChildProcess, spawn } from 'child_process';
 import { resolve } from 'path';
-import {
-  Observable,
-  Subject
-} from 'rxjs';
-import {
-  map,
-  switchMap
-} from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 
 import { config } from '../config';
 import { ValidateGit } from './validate';

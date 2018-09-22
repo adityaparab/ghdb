@@ -63,6 +63,3 @@ typings/
 # distribution
 dist
 repo
-
-#editor specific settings
-.vscode
