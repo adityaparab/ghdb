@@ -21,4 +21,4 @@ This project solves the issue by using a github repository to store database.
 
 ## Contributions
 
-Refer to [Contribution.md](https://github.com/adityaparab/ghdb/blob/master/Contribution.md) for more details on how to contribute.
+Refer to [CONTRIBUTING.md](/CONTRIBUTING.md) for more details on how to contribute.
