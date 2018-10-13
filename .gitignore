@@ -63,3 +63,13 @@ typings/
 # distribution
 dist
 repo
+
+# Editor junk
+*.sublime-workspace
+*.swp
+*.iml
+*.tmp
+.DS_Store
+/.idea
+/.awcache
+/.vscode
